@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import routeConfig from './route-conf';
 import history from './rest-history';
 import Home from './Home';
 import Page from './Page';
+import RestLink from './RestLink';
 import './App.css';
 
 
@@ -22,15 +23,19 @@ class App extends Component {
   render() {
     return (
       <div>
-        <p>
-          <button onClick={this.pushHistory}>Click</button>
-        </p>
         <Router history={history}>
-          <Switch>
+          <div>
+            <div>
+              <button onClick={this.pushHistory}>Go</button>
+            </div>
+            <div>
+              <RestLink path={routeConfig.home}>Home</RestLink>
+              <RestLink path={routeConfig.page} params={{ pageId: 1 }}>Page 1</RestLink>
+            </div>
             <Route path={routeConfig.home} component={Home} />
             <Route path={routeConfig.page} component={Page} />
             <Redirect to={routeConfig.home} />
-          </Switch>
+          </div>
         </Router>
       </div>
     );

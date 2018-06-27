@@ -1,10 +1,10 @@
 import createBrowserHistory from 'history/createBrowserHistory';
-import pathToRegExp from 'path-to-regexp-es6';
+import pathToRegexp from 'path-to-regexp-es6';
 
 const history = createBrowserHistory()
 
 history.pushWithParams = function(path, params, state) {
-  const toPath = pathToRegExp.compile(path);
+  const toPath = pathToRegexp.compile(path);
   history.push(toPath(params), state);
 }
 
